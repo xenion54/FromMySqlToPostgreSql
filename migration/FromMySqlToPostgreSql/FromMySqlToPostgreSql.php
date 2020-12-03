@@ -486,13 +486,16 @@ class FromMySqlToPostgreSql
             $boolRetVal = true;
 
         } catch (\PDOException $e) {
+		var_export($e);
             $boolRetVal = false;
             $this->generateError(
                 $e,
                 __METHOD__ . PHP_EOL . "\t" . '-- Cannot create a new schema...',
                 $sql
             );
-        }
+        } catch (\Exception $e) {
+		var_export($e);	
+	}
 
         return $boolRetVal;
     }
