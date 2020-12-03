@@ -435,6 +435,7 @@ class FromMySqlToPostgreSql
         $sql              = '';
 
         try {
+		echo 'try to connect' . PHP_EOL;
             $this->connect();
 		echo 'Connected' . PHP_EOL;
 
