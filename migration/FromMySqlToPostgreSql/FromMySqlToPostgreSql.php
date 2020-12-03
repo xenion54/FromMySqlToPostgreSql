@@ -436,8 +436,10 @@ class FromMySqlToPostgreSql
 
         try {
             $this->connect();
+		echo 'Connected' . PHP_EOL;
 
             if (empty($this->strSchema)) {
+		    echo '1' . PHP_EOL;
                 $this->strSchema = $this->strMySqlDbName;
 
                 for ($i = 1; true; $i++) {
@@ -462,6 +464,7 @@ class FromMySqlToPostgreSql
                 }
 
             } else {
+		    echo '2' . PHP_EOL;
                 $sql = "SELECT schema_name FROM information_schema.schemata "
                      . "WHERE schema_name = '" . $this->strSchema . "';";
 
@@ -471,12 +474,14 @@ class FromMySqlToPostgreSql
                 unset($sql, $arrSchemas, $stmt);
             }
 
+		echo '3' . PHP_EOL;
             if (!$boolSchemaExists) {
                 $sql  = 'CREATE SCHEMA "' . $this->strSchema . '";';
                 $stmt = $this->pgsql->query($sql);
                 unset($sql, $stmt);
             }
 
+		echo '4' . PHP_EOL;
             $boolRetVal = true;
 
         } catch (\PDOException $e) {
