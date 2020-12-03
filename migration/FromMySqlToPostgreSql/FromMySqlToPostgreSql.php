@@ -1570,14 +1570,14 @@ class FromMySqlToPostgreSql
          * Create a database schema.
          */
         if (!$this->createSchema()) {
-            $this->log('-- Script is terminated.' . PHP_EOL);
+            $this->log('-- Script is terminated. Can not create shceme.' . PHP_EOL);
             exit;
         } else {
             $this->log('-- New schema "' . $this->strSchema . '" was successfully created...' . PHP_EOL);
         }
 
         if (!$this->loadStructureToMigrate()) {
-            $this->log('-- Script is terminated.' . PHP_EOL);
+            $this->log('-- Script is terminated. Can not loadStructureToMigrate.' . PHP_EOL);
             exit;
         } else {
             $intTablesCnt = count($this->arrTablesToMigrate);
@@ -1585,7 +1585,7 @@ class FromMySqlToPostgreSql
         }
 
         if (!$this->createAndPopulateTables()) {
-            $this->log('-- Script is terminated.' . PHP_EOL);
+            $this->log('-- Script is terminated. Can not createAndPopulateTables' . PHP_EOL);
             exit;
         }
 
